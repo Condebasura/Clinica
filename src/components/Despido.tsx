@@ -3,5 +3,12 @@ type Props = {
     isActive: boolean;
 }
 export default function Chao({name , isActive}: Props){
-    return name && isActive ? <h1 className="d-flex">Chao {name}</h1 >: <h1 className="d-none">Chao</h1>
+    if(!isActive) return null;
+    return (
+
+        <h1>Chao {name || ''}</h1>
+    )
+        
+
+    
 }

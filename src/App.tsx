@@ -2,15 +2,17 @@ import './App.css'
 import { useState } from 'react';
 import Form from './components/Form'
 import Saludo from './components/Saludo'
-import Despido from './components/Despido'
 import Boton from './components/Boton';
+import Chao from './components/Despido';
 
 export default function App(){
- const [name, setName] = useState('');
+
  const [activeH1 , setActiveH1] = useState(0);
-
- // intentar que se pueda cambiar de espacio de escritura estando el campo de input relleno. 
-
+ const [nameA, setNameA] = useState('');
+ const [nameB, setNameB] = useState('');
+ 
+ const activeName  = activeH1 === 0 ? nameA : nameB;
+ const SetActiveName = activeH1 === 0 ? setNameA : setNameB;
   return(
     <>
     <div className='d-flex'>
@@ -18,17 +20,17 @@ export default function App(){
      <Boton titulo='boton de chao' isVisible={()=> setActiveH1(1)}/>
 
     <div className='border border-5 p-5 '>
-    <Form name={name} setName={setName}/>
+    <Form name={activeName} setName={SetActiveName}/>
     </div>
     <div className='border border-4 m-4 p-5 '>
-   {name && <Saludo name={name}
+   {nameA && <Saludo name={nameA}
     isActive={activeH1 === 0}
     />}
    
   
     </div>
     <div className='border border-4 m-4 p-5 '>
-       {name && <Despido name={name}
+       {nameB && <Chao name={nameB}
    isActive={activeH1 === 1}
    />}
     </div>
